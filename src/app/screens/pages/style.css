@@ -3,23 +3,22 @@
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    padding: 80px 0px 0px;
+    padding: 100px 0px 0px;
     position: relative;
   }
   
   .page .top-bar {
     align-items: center;
     background-color: #ffffff;
-    box-shadow: 0px 0px 6px #0000001f;
     display: flex;
-    gap: 20px;
-    height: 80px;
+    gap: 10px;
+    height: 100px;
     justify-content: center;
     left: 0;
-    padding: 20px;
+    padding: 40px;
     position: absolute;
     top: 0;
-    width: 1440px;
+    width: 100%;
   }
   
   .page .rectangle {
@@ -34,7 +33,7 @@
     color: #000000;
     flex: 1;
     font-family: "Roboto", Helvetica;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 36px;
@@ -54,7 +53,7 @@
   .page .tab {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 24px;
@@ -91,7 +90,7 @@
   .page .text-wrapper {
     color: #ffffff;
     font-family: "Roboto", Helvetica;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 48px;
@@ -104,7 +103,7 @@
   .page .description {
     color: #ffffff;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 24px;
@@ -140,7 +139,7 @@
   .page .div {
     color: #ffffff;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 24px;
@@ -175,7 +174,7 @@
   .page .title-2 {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 48px;
@@ -188,7 +187,7 @@
   .page .p {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 24px;
@@ -242,7 +241,7 @@
   .page .title-3 {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 400;
     height: 16px;
     left: 16px;
@@ -271,7 +270,7 @@
   .page .text {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 16px;
@@ -297,7 +296,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 24px;
@@ -312,7 +311,7 @@
     color: #000000;
     display: -webkit-box;
     font-family: "Roboto", Helvetica;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 500;
     height: 28px;
     letter-spacing: 0;
@@ -339,7 +338,7 @@
     color: #000000;
     display: -webkit-box;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     height: 24px;
     letter-spacing: 0;
@@ -395,7 +394,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 48px;
@@ -407,7 +406,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 24px;
@@ -473,7 +472,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 28px;
@@ -485,7 +484,7 @@
     align-self: stretch;
     color: #00000080;
     font-family: "Roboto", Helvetica;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 20px;
@@ -522,7 +521,7 @@
   .page .label-text {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 16px;
@@ -590,7 +589,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 20px;
@@ -620,7 +619,7 @@
     display: -webkit-box;
     flex: 1;
     font-family: "Roboto", Helvetica;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
     height: 20px;
     letter-spacing: 0;
@@ -665,7 +664,7 @@
   .page .title-8 {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: 0;
     line-height: 24px;
@@ -715,7 +714,7 @@
   .page .title-9 {
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 400;
     height: 16px;
     left: 16px;
@@ -789,7 +788,7 @@
     align-self: stretch;
     color: #000000;
     font-family: "Roboto", Helvetica;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 28px;

@@ -1,33 +1,41 @@
 import React from "react";
 import "./style.css";
+import Image from "next/image";
 
 export const HomePage = (): JSX.Element => {
     return (
         <div className="page">
             <div className="top-bar">
-                <div className="rectangle" />
-                <div className="title">Disability Support Services</div>
+                <Image
+                    src="/OLLI.png"
+                    width={50}
+                    height={50}
+                    alt="logo"
+                />
+                <div className="title">Cheer</div>
                 <div className="navigation">
                     <div className="tab">Home</div>
                     <div className="tab">Services</div>
                     <div className="tab">Contact</div>
                 </div>
             </div>
-            <div className="section">
+            <div className="section" style={{overflow: 'hidden'}}>
+
+                <Image
+                    src="/OLLI.png"
+                    fill={true}
+                    alt='logo'
+                    objectFit="cover"
+                />
                 <div className="container">
-                    <p className="text-wrapper">Welcome to Disability Support Services</p>
-                    <p className="description">Providing comprehensive support for families and individuals with disabilities.</p>
+                    <p className="text-wrapper" style={{backgroundColor:"rgba(250,250,250,0.2)", color:'#000'}}>Welcome to Cheer</p>
+                    <p className="description" style={{backgroundColor:"rgba(250,250,250,0.2)", color:'#000'}}>Providing comprehensive support for families and individuals with disabilities.</p>
                     <button className="button">
                         <div className="primary">
                             <div className="div">Learn More</div>
                         </div>
                     </button>
                 </div>
-                <img
-                    className="vector"
-                    alt="Vector"
-                    src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
-                />
             </div>
             <div className="section-2">
                 <div className="container">
@@ -275,7 +283,7 @@ export const HomePage = (): JSX.Element => {
             </div>
             <div className="container-wrapper">
                 <div className="container-3">
-                    <p className="title-10">© 2023 Disability Support Services. All Rights Reserved.</p>
+                    <p className="title-10">© 2023 Cheer. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
