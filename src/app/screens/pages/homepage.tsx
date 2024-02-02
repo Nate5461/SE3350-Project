@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import Image from "next/image";
+import Link from 'next/link';
 
 export const HomePage = (): JSX.Element => {
     return (
@@ -17,7 +18,9 @@ export const HomePage = (): JSX.Element => {
                     <div className="tab">Home</div>
                     <div className="tab">Services</div>
                     <div className="tab">Contact</div>
-                    <div className="tab">About Us</div>
+                    <Link href="/aboutus"> {/* Use Link here */}
+                        <a className="tab">About Us</a> {/* Make sure to use an <a> tag */}
+                    </Link>
                 </div>
             </div>
             <div className="section" style={{overflow: 'hidden'}}>
