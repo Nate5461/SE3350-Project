@@ -6,7 +6,7 @@ export default function ContactPage() {
             <div className="text-wrapper text-zinc-300 text-5xl">
                 Contact
             </div>
-            <div className="w-3/4 text-zinc-300">
+            <div className="w-1/2 text-zinc-300 text-2xl font-bold text-center">
                 Email: <a href="mailto: ihartmancheer@gmail.com">ihartmancheer@gmail.com</a>
             </div>
         </>
