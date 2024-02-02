@@ -17,6 +17,7 @@ export const HomePage = (): JSX.Element => {
                     <div className="tab">Home</div>
                     <div className="tab">Services</div>
                     <div className="tab">Contact</div>
+                    <div className="tab">About Us</div>
                 </div>
             </div>
             <div className="section" style={{overflow: 'hidden'}}>
