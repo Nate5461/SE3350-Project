@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import "./style.css"; // Import your stylesheet
+import Link from "next/link";
 
 export const AboutUsPage = (): JSX.Element => {
   return (
@@ -11,10 +12,20 @@ export const AboutUsPage = (): JSX.Element => {
         <Image src="/OLLI.png" width={50} height={50} alt="logo" />
         <div className="title">Cheer</div>
         <div className="navigation">
-          <div className="tab">Home</div>
-          <div className="tab">Services</div>
-          <div className="tab">Contact</div>
-          <div className="tab">About Us</div>
+        <Link href="/"> {/* Use Link here */}
+            <div className="tab">Home</div> {/* Make sure to use an <a> tag */}
+        </Link>
+        <Link href="/services"> {/* Use Link here */}
+            <div className="tab">Services</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/aboutus"> {/* Use Link here */}
+            <div className="tab">About Us</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/contact"> {/* Use Link here */}
+            <div className="tab">Contact</div> {/* Make sure to use an <a> tag */}
+        </Link>
         </div>
       </div>
       <div className="section" style={{ overflow: 'hidden' }}>

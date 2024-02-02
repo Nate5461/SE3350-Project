@@ -15,12 +15,20 @@ export const HomePage = (): JSX.Element => {
                 />
                 <div className="title">Cheer</div>
                 <div className="navigation">
-                    <div className="tab">Home</div>
-                    <div className="tab">Services</div>
-                    <div className="tab">Contact</div>
-                    <Link href="/aboutus"> {/* Use Link here */}
-                        <a className="tab">About Us</a> {/* Make sure to use an <a> tag */}
-                    </Link>
+                <Link href="/"> {/* Use Link here */}
+            <div className="tab">Home</div> {/* Make sure to use an <a> tag */}
+        </Link>
+        <Link href="/services"> {/* Use Link here */}
+            <div className="tab">Services</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/aboutus"> {/* Use Link here */}
+            <div className="tab">About Us</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/contact"> {/* Use Link here */}
+            <div className="tab">Contact</div> {/* Make sure to use an <a> tag */}
+        </Link>
                 </div>
             </div>
             <div className="section" style={{overflow: 'hidden'}}>

@@ -13,11 +13,9 @@ export const ServicesPage = (): JSX.Element => {
         <div className="title">Cheer</div>
         <div className="navigation">
 
-        <Link href=""> {/* Use Link here */}
+        <Link href="/"> {/* Use Link here */}
             <div className="tab">Home</div> {/* Make sure to use an <a> tag */}
         </Link>
-        
-
         <Link href="/services"> {/* Use Link here */}
             <div className="tab">Services</div> {/* Make sure to use an <a> tag */}
         </Link>

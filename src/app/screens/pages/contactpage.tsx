@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import Image from "next/image";
+import Link from 'next/link';
 
 
 export const ContactPage = (): JSX.Element => {
@@ -15,10 +16,20 @@ export const ContactPage = (): JSX.Element => {
                 />
                 <div className="title">Cheer</div>
                 <div className="navigation">
-                    <div className="tab">Home</div>
-                    <div className="tab">Services</div>
-                    <div className="tab">Contact</div>
-                    <div className="tab">About Us</div>
+                <Link href="/"> {/* Use Link here */}
+            <div className="tab">Home</div> {/* Make sure to use an <a> tag */}
+        </Link>
+        <Link href="/services"> {/* Use Link here */}
+            <div className="tab">Services</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/aboutus"> {/* Use Link here */}
+            <div className="tab">About Us</div> {/* Make sure to use an <a> tag */}
+        </Link>
+
+        <Link href="/contact"> {/* Use Link here */}
+            <div className="tab">Contact</div> {/* Make sure to use an <a> tag */}
+        </Link>
                 </div>
             </div>
 
