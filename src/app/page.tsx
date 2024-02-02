@@ -12,6 +12,7 @@ export default function HomePage() {
           alt='logo'
           objectFit="cover"
         />
+
         <div className="container">
           <p className="text-wrapper text-zinc-200" >Cheer</p>
           <p className="description text-zinc-200" >Providing comprehensive support for families and individuals with disabilities.</p>

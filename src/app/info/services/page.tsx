@@ -5,11 +5,11 @@ import React from "react";
 export default function ServicesPage() {
   return (
     <>
-      <div className="text-zinc-200 text-5xl">
+      <div className="text-wrapper text-zinc-300 text-5xl">
         Services
       </div>
-      <div className="description text-zinc-200">
-        <h2>CHEER WORKS</h2>
+      <div className="w-3/4 text-zinc-300">
+        <h1>CHEER Works</h1>
 
         <p>
           In June, 2023, we opened an ice cream/variety store called
@@ -17,6 +17,8 @@ export default function ServicesPage() {
           Arkona, open street side to the public as well as the camp, so please
           come by and support us if you are in the area.
         </p>
+
+        <br/>
 
         <p>
           CHEER Works employs members of the CHEER Group who have been
@@ -28,7 +30,9 @@ export default function ServicesPage() {
           team!
         </p>
 
-        <h2>Cheer Connections</h2>
+        <br/>
+
+        <h1>Cheer Connections</h1>
         <p>
           Cheer Connections is a group of parents and caregivers, some have
           adult children in the CHEER group and some don’t, but we are all in a
@@ -37,6 +41,7 @@ export default function ServicesPage() {
           the Ontario Caregivers Association, which provided a relaxing day, a
           nice lunch, and great guest speakers.
         </p>
+        <br/>
 
         <p>
           The Cheer Connections regularly gather for various workshops so that
@@ -53,6 +58,8 @@ export default function ServicesPage() {
           run various fundraisers, and donations are accepted online through
           Canada Helps.
         </p>
+
+        <br/>
 
         <p>
           Looking for some social fun?… we have that too! Respite care is also

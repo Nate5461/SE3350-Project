@@ -22,8 +22,17 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-full`}>
         <div className="page min-h-full">
           <div className="top-bar">
-            <Image src="/OLLI.png" width={50} height={50} alt="logo" />
-            <div className="title">Cheer</div>
+            <Link href="/">
+              <Image src="/OLLI.png"
+                width={50}
+                height={50}
+                alt="logo"
+              />
+
+
+            </Link>
+            <div className="title"><Link href="/">Cheer</Link></div>
+
             <div className="navigation">
 
               <Link href="/"> {/* Use Link here */}
