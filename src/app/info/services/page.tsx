@@ -9,7 +9,7 @@ export default function ServicesPage() {
         Services
       </div>
       <div className="w-3/4 text-zinc-300">
-        <h1>CHEER Works</h1>
+        <h1>CHEER Works!</h1>
 
         <p>
           In June, 2023, we opened an ice cream/variety store called
