@@ -22,6 +22,8 @@ const TextToSpeechButton = () => {
             setSpeechSynthesisInstance(null); // Reset the instance
         }
         setIsSpeaking(false);
+        console.log('speak?' + isSpeaking);
+
     };
 
     const textSpeech = () => {
@@ -41,7 +43,8 @@ const TextToSpeechButton = () => {
     return (
         <div className="fixed right-0 bottom-0">
             <button
-                className={`bg-${isSpeaking ? 'red' : 'blue'}-500 hover:bg-${isSpeaking ? 'red' : 'blue'}-700 text-white font-bold py-2 px-4 rounded`}
+                className= {`bg-${isSpeaking ? 'red' : 'blue'}-500 text-black font-bold py-2 px-4 rounded`}
+                //className={`bg-${isSpeaking ? 'red' : 'blue'}-500 hover:bg-${isSpeaking ? 'red' : 'blue'}-700 text-white font-bold py-2 px-4 rounded`}
                 onClick={textSpeech}
             >
                 {isSpeaking ? 'Stop Speaking' : 'Start Speaking'}
