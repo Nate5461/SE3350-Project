@@ -96,7 +96,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <button className="button">
+          <button className="blueButton">
             <div className="primary">
               <div className="div">Register</div>
             </div>
