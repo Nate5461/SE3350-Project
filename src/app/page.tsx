@@ -187,46 +187,46 @@ export default function HomePage() {
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
         />
       </div>
+
       <div className="section-2">
         <div className="container">
           <div className="title-2">Parent Registration</div>
           <div className="input">
             <div className="title-7">Parent Name</div>
             <div className="textfield">
-              <div className="text-2">Enter your name</div>
+              <input type="text" placeholder="Enter your name" />
             </div>
           </div>
           <div className="input">
             <div className="title-7">Email Address</div>
             <div className="textfield">
-              <div className="text-2">Enter your email</div>
+              <input type="email" placeholder="Enter your email" />
             </div>
           </div>
           <div className="input">
-            <div className="title-7">Child&#39;s Name</div>
+            <div className="title-7">Child's Name</div>
             <div className="textfield">
-              <div className="text-2">Enter your child&#39;s name</div>
+              <input type="text" placeholder="Enter your child's name" />
             </div>
           </div>
           <div className="input">
-            <div className="title-7">Child&#39;s Age</div>
+            <div className="title-7">Child's Age</div>
             <div className="textfield">
-              <div className="text-2">Enter your child&#39;s age</div>
+              <input type="number" placeholder="Enter your child's age" />
             </div>
           </div>
+          <div className="div">
+            <button className="title-7">Register</button>
+          </div>
+        </div >
 
-          <button className="button">
-            <div className="primary">
-              <div className="div">Register</div>
-            </div>
-          </button>
-        </div>
         <img
           className="vector-3"
           alt="Vector"
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
         />
-      </div>
+      </div >
+      
       <div className="section-2">
         <div className="container-2">
           <div className="title-5">Client Login</div>
