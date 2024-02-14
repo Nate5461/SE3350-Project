@@ -32,6 +32,11 @@ body {
   }
 }
 
+.blueButton {
+  background-color: blue;
+  color: white; /* Assuming you want the text color to be white */
+}
+
 .page {
   align-items: center;
   background-color: #ffffff;
