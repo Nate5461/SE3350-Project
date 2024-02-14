@@ -68,6 +68,46 @@ export default function ServicesPage() {
           attend meetings.
         </p>
       </div>
+      <div className="section-2">
+        <div className="container">
+          <div className="title-2">NewsLetter signup Registration</div>
+          <div className="input">
+            <div className="title-7">Recipient Name</div>
+            <div className="textfield">
+              <div className="text-2">Enter your name</div>
+            </div>
+          </div>
+          <div className="input">
+            <div className="title-7">Email Address</div>
+            <div className="textfield">
+              <div className="text-2">Enter your email</div>
+            </div>
+          </div>
+          <div className="input">
+            <div className="title-7">Child&#39;s Name</div>
+            <div className="textfield">
+              <div className="text-2">Enter your child&#39;s name</div>
+            </div>
+          </div>
+          <div className="input">
+            <div className="title-7">Child&#39;s Age</div>
+            <div className="textfield">
+              <div className="text-2">Enter your child&#39;s age</div>
+            </div>
+          </div>
+
+          <button className="button">
+            <div className="primary">
+              <div className="div">Register</div>
+            </div>
+          </button>
+        </div>
+        <img
+          className="vector-3"
+          alt="Vector"
+          src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
+        />
+      </div>
     </>
   );
 };
