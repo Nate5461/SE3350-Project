@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from 'next/link';
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Button from "./button";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +19,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-full`}>
@@ -56,6 +60,8 @@ export default function RootLayout({
           {children}
         </div>
 
+        
+        <Button />
       </body>
     </html >
   );
