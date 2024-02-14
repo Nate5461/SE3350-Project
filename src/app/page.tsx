@@ -1,5 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+const RegistrationForm = dynamic(() => import('./components/registration'), { ssr: false });
 
 export default function HomePage() {
   return (
@@ -188,45 +191,8 @@ export default function HomePage() {
         />
       </div>
 
-      <div className="section-2">
-        <div className="container">
-          <div className="title-2">Parent Registration</div>
-          <div className="input">
-            <div className="title-7">Parent Name</div>
-            <div className="textfield">
-              <input type="text" placeholder="Enter your name" />
-            </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Email Address</div>
-            <div className="textfield">
-              <input type="email" placeholder="Enter your email" />
-            </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Child's Name</div>
-            <div className="textfield">
-              <input type="text" placeholder="Enter your child's name" />
-            </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Child's Age</div>
-            <div className="textfield">
-              <input type="number" placeholder="Enter your child's age" />
-            </div>
-          </div>
-          <div className="div">
-            <button className="title-7">Register</button>
-          </div>
-        </div >
+      <RegistrationForm />
 
-        <img
-          className="vector-3"
-          alt="Vector"
-          src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
-        />
-      </div >
-      
       <div className="section-2">
         <div className="container-2">
           <div className="title-5">Client Login</div>
