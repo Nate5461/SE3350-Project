@@ -1,6 +1,7 @@
 // ServicesPage.tsx
 
 import React from "react";
+import Image from "next/image";
 
 export default function ServicesPage() {
   return (
@@ -40,7 +41,7 @@ export default function ServicesPage() {
           similar situation. We meet at least once a month to offer each other
           support and share our knowledge. Our winter meetings were funded by
           the Ontario Caregivers Association, which provided a relaxing day, a
-          nice lunch, and great guest speakers.
+          eice lunch, and great guest speakers.
         </p>
         <br/>
 
@@ -102,10 +103,12 @@ export default function ServicesPage() {
             </div>
           </button>
         </div>
-        <img
+        <Image
           className="vector-3"
           alt="Vector"
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
+          width={200}
+          height={200}
         />
       </div>
     </>

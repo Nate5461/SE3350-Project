@@ -3,6 +3,9 @@
 # commiter
 COMMITER
 
+# .env should be manual, as it contains our api keys
+.env
+
 # dependencies
 /node_modules
 /.pnp

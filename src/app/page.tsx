@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
-
-const RegistrationForm = dynamic(() => import('./components/registration'), { ssr: false });
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -18,11 +16,13 @@ export default function HomePage() {
         <div className="container">
           <p className="text-wrapper text-zinc-200" >Cheer</p>
           <p className="description text-zinc-200" >Providing comprehensive support for families and individuals with disabilities.</p>
-          <button className="button">
-            <div className="primary">
-              <div className="div text-zinc-200">Learn More</div>
-            </div>
-          </button>
+          <Link href="/info/services">
+            <button className="button">
+              <div className="primary">
+                <div className="div text-zinc-200">Learn More</div>
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
       <div className="section-2">
@@ -86,11 +86,14 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <img
-          className="img"
-          alt="Vector"
-          src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
-        />
+        {/**
+          <img className="img"
+            alt="Vector"
+            src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
+          />
+         */}
+
+
       </div>
       <div className="section-2">
         <div className="image-wrapper">
@@ -183,14 +186,14 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <img
+        {/*
+          <img
           className="vector-2"
           alt="Vector"
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
-        />
+          />
+        */}
       </div>
-
-      <RegistrationForm />
 
       <div className="section-2">
         <div className="container-2">
@@ -206,11 +209,13 @@ export default function HomePage() {
           </div>
         </div>
         <div className="list-3" />
+        {/*
         <img
           className="vector-4"
           alt="Vector"
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
         />
+        */}
       </div>
       <div className="section-2">
         <div className="image-container-2">
@@ -226,11 +231,13 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        {/*
         <img
           className="vector-5"
           alt="Vector"
           src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
         />
+      */}
       </div>
       <div className="container-wrapper">
         <div className="container-3">
