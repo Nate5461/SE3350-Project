@@ -11,11 +11,10 @@ export default function InfoLayout({
         <>
             <div className="section" style={{ overflow: 'hidden' }}>
                 <Image
-                    className="blur contrast-50"
+                    className="blur contrast-50 object-cover"
                     src="/OLLI.png"
                     fill={true}
                     alt='logo'
-                    objectFit="cover"
                     style={{filter: "brightness(.30)"}}
                 />
                 <div className="container min-h-screen">
