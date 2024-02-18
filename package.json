@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "firebase": "^10.8.0",
+<<<<<<< HEAD
     "firebaseui": "^6.1.0",
+=======
+>>>>>>> 87e80decfb2b4331dcffe062c84343e0fd784822
     "next": "14.1.0",
     "node": "^21.6.1",
     "react": "^18",
