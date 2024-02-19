@@ -28,7 +28,7 @@ export default function RootLayout({
         <div className="page min-h-full">
           <div className="top-bar">
             <Link href="/">
-              <Image src="/OLLI.png"
+              <Image src="/olli.png"
                 width={50}
                 height={50}
                 alt="logo"

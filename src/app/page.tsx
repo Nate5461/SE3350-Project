@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="section" style={{ overflow: 'hidden' }}>
         <Image
           className="brightness-50 object-cover"
-          src="/OLLI.png"
+          src="/olli.png"
           fill={true}
           alt='logo'
         />
