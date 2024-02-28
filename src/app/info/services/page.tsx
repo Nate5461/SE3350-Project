@@ -1,10 +1,47 @@
-// ServicesPage.tsx
-
-import React from "react";
+"use client"
+import React, { useState }from "react";
 import Image from "next/image";
+import { firestore } from "./firebase"
+import { addDoc, collection } from 'firebase/firestore';
+
 
 export default function ServicesPage() {
+  const [formData, setFormData] = useState({
+    recipientName: "",
+    emailAddress: "",
+    childName: "",
+    childAge: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+  
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    try {
+      const docRef = await addDoc(collection(firestore, '(default-)'), formData);
+      console.log('Document written with ID: ', docRef.id);
+      // Clear form data after successful submission
+      setFormData({
+        recipientName: "",
+        emailAddress: "",
+        childName: "",
+        childAge: "",
+      });
+    } catch (error) {
+      console.error('Error adding document: ', error);
+    }
+  };
+  
   return (
+    
     <>
       <div className="text-wrapper text-zinc-300 text-5xl">
         Services
@@ -71,37 +108,63 @@ export default function ServicesPage() {
       </div>
       <div className="section-2">
         <div className="container">
-          <div className="title-2">NewsLetter signup Registration</div>
-          <div className="input">
-            <div className="title-7">Recipient Name</div>
-            <div className="textfield">
-              <div className="text-2">Enter your name</div>
+          <div className="title-2">Newsletter Signup Registration</div>
+          <form onSubmit={handleSubmit}>
+            <div className="input">
+              <div className="title-7">Recipient Name</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="recipientName"
+                  value={formData.recipientName}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                />
+              </div>
             </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Email Address</div>
-            <div className="textfield">
-              <div className="text-2">Enter your email</div>
+            <div className="input">
+              <div className="title-7">Email Address</div>
+              <div className="textfield">
+                <input
+                  type="email"
+                  name="emailAddress"
+                  value={formData.emailAddress}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                />
+              </div>
             </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Child&#39;s Name</div>
-            <div className="textfield">
-              <div className="text-2">Enter your child&#39;s name</div>
+            <div className="input">
+              <div className="title-7">Child's Name</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="childName"
+                  value={formData.childName}
+                  onChange={handleChange}
+                  placeholder="Enter your child's name"
+                />
+              </div>
             </div>
-          </div>
-          <div className="input">
-            <div className="title-7">Child&#39;s Age</div>
-            <div className="textfield">
-              <div className="text-2">Enter your child&#39;s age</div>
+            <div className="input">
+              <div className="title-7">Child's Age</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="childAge"
+                  value={formData.childAge}
+                  onChange={handleChange}
+                  placeholder="Enter your child's age"
+                />
+              </div>
             </div>
-          </div>
 
-          <button className="blueButton">
-            <div className="primary">
-              <div className="div">Register</div>
-            </div>
-          </button>
+            <button type="submit" className="blueButton">
+              <div className="primary">
+                <div className="div">Register</div>
+              </div>
+            </button>
+          </form>
         </div>
         <Image
           className="vector-3"
