@@ -1,16 +1,13 @@
 "use client"
-import React, { useState }from "react";
-import Image from "next/image";
-import { firestore } from "./firebase"
-import { addDoc, collection } from 'firebase/firestore';
-
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function ServicesPage() {
   const [formData, setFormData] = useState({
-    recipientName: "",
-    emailAddress: "",
-    childName: "",
-    childAge: "",
+    recipientName: '',
+    emailAddress: '',
+    childName: '',
+    childAge: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,23 +17,35 @@ export default function ServicesPage() {
       [name]: value,
     }));
   };
-  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
-      const docRef = await addDoc(collection(firestore, '(default-)'), formData);
-      console.log('Document written with ID: ', docRef.id);
-      // Clear form data after successful submission
-      setFormData({
-        recipientName: "",
-        emailAddress: "",
-        childName: "",
-        childAge: "",
+      console.log('Form data:', formData); // Add console.log here
+
+      const response = await fetch('/api/newsletterSignup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (response.ok) {
+        console.log('Signup successful!');
+        // Clear form data after successful submission
+        setFormData({
+          recipientName: '',
+          emailAddress: '',
+          childName: '',
+          childAge: '',
+        });
+      } else {
+        console.error('Failed to submit form:', await response.text());
+      }
     } catch (error) {
-      console.error('Error adding document: ', error);
+      console.error('Error submitting form:', error);
     }
   };
   
