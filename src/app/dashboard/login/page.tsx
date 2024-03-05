@@ -1,4 +1,3 @@
-"use client"
 import { useState } from 'react';
 import firebase_app from "../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
@@ -12,7 +11,9 @@ function LoginForm() {
 
   const handleLogin = async () => {
     await signInWithEmailAndPassword(auth, email, password);
-    console.log("dsada");
+    if (email === 'admin') {
+      alert('Logged in as admin');
+    }
   };
 
 
