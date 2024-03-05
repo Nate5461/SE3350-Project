@@ -1,4 +1,3 @@
-"use client"
 import { useState } from 'react';
 import firebase_app from "../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
@@ -17,12 +16,14 @@ function LoginForm() {
 const handleLogin = async () => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    if (email === 'admin') {
+      alert('Logged in as admin');
+    }
     router.push('/'); // redirect to home page
   } catch (error) {
     console.error(error);
     console.log("Error signing in");
   }
-};
 
 
   return (
