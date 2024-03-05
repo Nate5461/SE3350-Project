@@ -3,17 +3,26 @@ import { useState } from 'react';
 import firebase_app from "../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 const auth = getAuth(firebase_app);
 
 function LoginForm() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
-  const handleLogin = async () => {
+  const router = useRouter(); // initialize useRouter
+
+const handleLogin = async () => {
+  try {
     await signInWithEmailAndPassword(auth, email, password);
-    console.log("dsada");
-  };
+    router.push('/'); // redirect to home page
+  } catch (error) {
+    console.error(error);
+    console.log("Error signing in");
+  }
+};
 
 
   return (
