@@ -1,6 +1,6 @@
-'use client';
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 import { initializeApp, getApps } from "firebase/app";
 
 // Your web app's Firebase configuration

@@ -1,7 +1,9 @@
 "use client"
-import firebase_app from "../../firebase";
+import firebase_app from "../../../firebase";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FirebaseError } from "@firebase/util";
 
 const auth = getAuth(firebase_app);
 
@@ -9,26 +11,33 @@ function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setcPassword] = useState('');
+  const [errorMsg, setErr] = useState('');
+  const router = useRouter();
 
   const handleRegistration = async () => {
+
     console.log('Email:', email);
     console.log(`password ${password == cpassword ? "does" : "does not"} match`)
-    if(password != cpassword) return; // password doesn't match
-    let result = null, error = null;
+    if (password != cpassword) return setErr("passwords do not match"); // password doesn't match 
+    let result = null;
     try {
       result = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("account created")
     } catch (e) {
-      console.log(e);
-      error = e;
+      console.log(e)
+      if(e instanceof Error && typeof e.message === 'string') {
+        setErr(e.message.slice(10));
+      }
+      return;
     }
+    console.log("account created")
+    router.push('/dashboard/login')
 
-    return [result, error];
   };
 
   return (
     <div className="section-2">
       <form className="container" onSubmit={(e) => { e.preventDefault() }}>
+        <div className="text-red-400">{errorMsg}</div>
         <div className="title-2">Account Registration</div>
         <div className="input">
           <div className="title-7">Email Address</div>
@@ -62,6 +71,7 @@ function RegistrationForm() {
           </div>
 
         </div>
+
         <button className="center div" type="submit" onClick={handleRegistration}>
           <div className="title-wrapper">
             Register

@@ -1,35 +1,43 @@
+"use client"
 import { useState } from 'react';
-import firebase_app from "../firebase";
+import firebase_app from "../../firebase";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
 const auth = getAuth(firebase_app);
 
 function LoginForm() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [errorMsg, setErr] = useState('');
+
 
   const router = useRouter(); // initialize useRouter
 
-const handleLogin = async () => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    if (email === 'admin') {
-      alert('Logged in as admin');
+  const handleLogin = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      if (email === 'admin') {
+        alert('Logged in as admin');
+      }
+      router.push('/'); // redirect to home page
+    } catch (e) {
+      console.error(e);
+      console.log("Error signing in");
+      if(e instanceof Error && typeof e.message === 'string') {
+        setErr(e.message.slice(10));
+      }
     }
-    router.push('/'); // redirect to home page
-  } catch (error) {
-    console.error(error);
-    console.log("Error signing in");
-  }
+  };
 
 
   return (
 
     <div className="section-2">
       <form className="container" onSubmit={(e) => { e.preventDefault() }}>
+        <div className="text-red-400">{errorMsg}</div>
         <div className="title-2">Account Login</div>
         <div className="input">
           <div className="title-7">Email Address</div>
@@ -56,11 +64,11 @@ const handleLogin = async () => {
 
         <button className="center div" type="submit" onClick={handleLogin}>
           <div className="title-wrapper">
-            Login 
+            Login
           </div>
         </button>
 
-        <br/><br/>
+        <br /><br />
 
         <Link href="/dashboard/login/register">
           <button className="center div">
@@ -72,5 +80,5 @@ const handleLogin = async () => {
       </form>
     </div >
   );
-};
+}
 export default LoginForm;
