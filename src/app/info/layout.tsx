@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import "../globals.css";
 
@@ -9,6 +10,7 @@ export default function InfoLayout({
 }>) {
     return (
         <>
+
             <div className="section" style={{ overflow: 'hidden' }}>
                 <Image
                     className="blur contrast-50 object-cover"

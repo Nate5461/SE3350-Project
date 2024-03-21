@@ -1,5 +1,5 @@
 "use client"
-import firebase_app from "../../../firebase";
+import firebase_app from "../../firebase";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -30,7 +30,7 @@ function RegistrationForm() {
       return;
     }
     console.log("account created")
-    router.push('/dashboard/login')
+    router.push('/login')
 
   };
 

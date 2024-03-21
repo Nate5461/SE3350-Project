@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react';
-import firebase_app from "../../firebase";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import firebase_app from "../firebase";
+import { signInWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -13,25 +13,29 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [errorMsg, setErr] = useState('');
 
-
   const router = useRouter(); // initialize useRouter
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      if (email === 'admin') {
-        alert('Logged in as admin');
-      }
-      router.push('/'); // redirect to home page
+      await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+      })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        });
+      router.push('/dashboard'); // redirect to home page
     } catch (e) {
       console.error(e);
       console.log("Error signing in");
-      if(e instanceof Error && typeof e.message === 'string') {
+      if (e instanceof Error && typeof e.message === 'string') {
         setErr(e.message.slice(10));
       }
     }
   };
-
 
   return (
 
@@ -70,13 +74,15 @@ function LoginForm() {
 
         <br /><br />
 
-        <Link href="/dashboard/login/register">
+        <Link href="/login/register">
           <button className="center div">
             <div className="title-wrapper">
               Register
             </div>
           </button>
         </Link>
+
+
       </form>
     </div >
   );

@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { browserSessionPersistence, getAuth, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp, getApps } from "firebase/app";
@@ -15,6 +15,9 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+const auth = getAuth(firebase_app);
+setPersistence(auth, browserSessionPersistence);
 
 export default firebase_app;
 

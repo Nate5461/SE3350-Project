@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const db = getFirestore(firebase_app);
-
 const query = await getDoc(doc(db, 'calendar', "links"));
 
 export default function CalendarPage() {

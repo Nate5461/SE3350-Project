@@ -194,29 +194,6 @@ export default function HomePage() {
           />
         */}
       </div>
-
-      <div className="section-2">
-        <div className="container-2">
-          <div className="title-5">Client Login</div>
-          <p className="text-wrapper-2">Already registered? Access your account here.</p>
-          <div className="button-2">
-            <div className="seconday">
-              <div className="title-8">Forgot Password?</div>
-            </div>
-            <div className="title-wrapper">
-              <div className="div">Log In</div>
-            </div>
-          </div>
-        </div>
-        <div className="list-3" />
-        {/*
-        <img
-          className="vector-4"
-          alt="Vector"
-          src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
-        />
-        */}
-      </div>
       <div className="section-2">
         <div className="image-container-2">
           <div className="image-2">
