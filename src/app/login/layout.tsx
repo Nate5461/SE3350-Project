@@ -24,30 +24,11 @@ function LoginLayout({
 
                 <div className="navigation">
 
-                    <Link href="/"> {/* Use Link here */}
-                        <div className="tab">Home</div>
-                    </Link>
-
-                    <Link href="/info/calendar"> {/* Use Link here */}
-                        <div className="tab">Calendar</div>
-                    </Link>
-
-                    <Link href="/info/services"> {/* Use Link here */}
-                        <div className="tab">Services</div>
-                    </Link>
-
-                    <Link href="/info/aboutus"> {/* Use Link here */}
-                        <div className="tab">About Us</div>
-                    </Link>
-
-                    <Link href="/info/contact"> {/* Use Link here */}
-                        <div className="tab">Contact</div>
-                    </Link>
 
                     <Link href="/dashboard">
                         <div className="tab bg-black text-slate-200 rounded-lg">
                             <div className="text-slate-200 py-2 px-4">
-                                login
+                                dashboard
                             </div>
                         </div>
                     </Link>

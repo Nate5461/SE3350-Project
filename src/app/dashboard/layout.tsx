@@ -1,7 +1,7 @@
 "use client";
 import firebase_app from "../firebase";
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -16,7 +16,7 @@ function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
+    const [loggedIn, setLogggedIn] = useState(false);
     const router = useRouter();
     async function checkPerms(user: User | null) {
         if (user === null) {
@@ -24,9 +24,9 @@ function DashboardLayout({
             router.push('/login')
             return;
         }
+        setLogggedIn(true);
         currentUser = user;
         const token = await user.getIdToken();
-        console.log(token);
         const uid = user.uid;
         const db = getFirestore(firebase_app);
         const perms = await getDoc(doc(db, 'users', uid));
@@ -35,11 +35,19 @@ function DashboardLayout({
         checkPerms(user);
     })
 
+    let loggedInChildren = () => {
+        if(loggedIn) {
+            return children;
+        }
+        else return <></>;
+    }
+
     return (
         <>
             <div style={{width: '100%'}}>
 
-                {children}
+                {loggedInChildren()}
+
             </div>
         </>
     )
