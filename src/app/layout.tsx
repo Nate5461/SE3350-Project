@@ -50,6 +50,10 @@ export default function RootLayout({
               <div className="tab">Calendar</div>
             </Link>
 
+            <Link href="/info/newsletter"> {/* Use Link here */}
+              <div className="tab">Newsletter</div>
+            </Link>
+
             <Link href="/info/services"> {/* Use Link here */}
               <div className="tab">Services</div>
             </Link>

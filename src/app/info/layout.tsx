@@ -11,7 +11,7 @@ export default function InfoLayout({
     return (
         <>
 
-            <div className="section" style={{ overflow: 'hidden' }}>
+            <div className="section" style={{ overflow: 'hidden', width: '100%'}}>
                 <Image
                     className="blur contrast-50 object-cover"
                     src="/olli.png"
@@ -19,7 +19,7 @@ export default function InfoLayout({
                     alt='logo'
                     style={{filter: "brightness(.30)"}}
                 />
-                <div className="container min-h-screen">
+                <div className="container min-h-screen " style={{width: '100%'}}>
 
                     {children}
 

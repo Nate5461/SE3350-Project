@@ -1,31 +1,92 @@
 "use client"
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase_app from '../firebase';
 import Link from 'next/link';
-import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { Timestamp, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { ref, remove, set } from 'firebase/database';
 
+const db = getFirestore(firebase_app);
 const auth = getAuth(firebase_app);
 let user = auth.currentUser;
+type inquiry = {
+    id: string,
+    email: string,
+    message: string,
+    name: string,
+    timestamp: Timestamp
+}
 
 function Dashboard() {
     const [isAdmin, setIsAdmin] = useState(false);
     const [adminList, setAdminList] = useState([]);
+    const [calendars, setcalendars] = useState([]);
     const router = useRouter(); // initialize useRouter
+    const [dispInquiry, setDispInquiry] = useState('');
 
     const [inputEmail, setInputEmail] = useState('');
+    const [inputLink, setInputLink] = useState('');
 
+    let [inquiryList, setInquiryList] = useState([])
+    let [inquiryI, setInquiryI] = useState(0);
     let getInqueries = () => {
-        return <>
-        </>
+        if (inquiryList.length == 0) {
+            let inqueries = collection(db, 'inquiries')
+            let inqList: inquiry[] = [];
+
+            getDocs(inqueries).then(query => {
+                query.forEach(doc => {
+                    let obj = doc.data() as inquiry
+                    obj.id = doc.id
+                    inqList.push(obj)
+                })
+                setInquiryList(inqList as never[])
+                if (inquiryI >= inqList.length) {
+                    inquiryI = 0;
+
+                }
+                if (inqList.length > 0) {
+                    let inq: inquiry = inqList[inquiryI]
+                    let setString = inq.email + '\n'
+                    setString += inq.name + '\n'
+                    setString += inq.timestamp.toDate() + '\n'
+                    setString += inq.message
+                    setDispInquiry(setString);
+                }
+                return ""
+            });
+        }
+    }
+    useEffect(getInqueries, []);
+
+    let setInquiry = (x: number) => {
+        let i = inquiryI + x;
+        if (inquiryList.length > 0) {
+            if (i >= inquiryList.length) i = 0;
+            if (i < 0) i = inquiryList.length - 1;
+
+            let inq: inquiry = inquiryList[i]
+            let setString = inq.email + '\n'
+            setString += inq.name + '\n'
+            setString += inq.timestamp.toDate() + '\n'
+            setString += inq.message
+            setDispInquiry(setString);
+        }
+        setInquiryI(i);
+    }
+
+    let deleteInquiry = () => {
+        let inq: inquiry = inquiryList[inquiryI]
+        deleteDoc(doc(db, "inquiries", inq.id)).then(() => {
+            inquiryList.splice(inquiryI, 1)
+            setInquiry(0);
+
+        })
     }
 
     let addAdmin = () => {
         const email = inputEmail;
-        console.log(inputEmail)
-        const db = getFirestore(firebase_app);
         getDoc(doc(db, 'users', 'admins')).then(perms => {
             if (perms.exists()) {
                 let list = perms.data().adminList;
@@ -40,14 +101,11 @@ function Dashboard() {
     let removeAdmin = () => {
         const email = inputEmail;
         if (user != null && user.email != email) {
-            const db = getFirestore(firebase_app);
             getDoc(doc(db, 'users', 'admins')).then(perms => {
                 if (perms.exists()) {
                     let list = perms.data().adminList;
-                    list = list.sort((a: string, b:string) => { if(a == email) return 1;else if(b == email)return -1; else return 0; });
+                    list = list.sort((a: string, b: string) => { if (a == email) return 1; else if (b == email) return -1; else return 0; });
                     if (list[list.length - 1] == email) list.pop()
-                    console.log(list[list.length - 1])
-
                     setDoc(doc(db, 'users', 'admins'), {
                         adminList: list,
                     });
@@ -57,9 +115,39 @@ function Dashboard() {
         }
     }
 
-    let newsletterButton = () => {
-        return <a className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-l uppercase" href="#">sign up</a>
+    let addCalendar = () => {
+        getDoc(doc(db, 'calendar', 'links')).then(c => {
+            if (c.exists()) {
+                let list = c.data().linksList;
+                list.push(inputLink)
+                setDoc(doc(db, 'calendar', 'links'), {
+                    linksList: list
+                });
+                setcalendars(list);
+            }
+        })
     }
+    let removeCalendar = () => {
+        getDoc(doc(db, 'calendar', 'links')).then(c => {
+            if (c.exists()) {
+                let list = c.data().linksList;
+                list.splice(list.indexOf(inputLink), 1)
+                setDoc(doc(db, 'users', 'admins'), {
+                    linksList: list,
+                });
+                setcalendars(list);
+            }
+        })
+    }
+
+    useEffect(() => {
+        getDoc(doc(db, 'calendar', 'links')).then(c => {
+            if (c.exists()) {
+                setcalendars(c.data().linksList as never[])
+            }
+        })
+    }, [])
+
     onAuthStateChanged(auth, thisuser => {
         if (thisuser == null) {
             // if not logged in
@@ -69,7 +157,6 @@ function Dashboard() {
         user = thisuser;
         user.getIdToken().then(token => {
             const uid = thisuser;
-            const db = getFirestore(firebase_app);
             getDoc(doc(db, 'users', 'admins')).then(perms => {
                 if (perms.exists()) {
                     if (thisuser.email != null && perms.data().adminList.includes(thisuser.email)) {
@@ -95,12 +182,26 @@ function Dashboard() {
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                     <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                        <div className="h-40 bg-gray-400 rounded-lg">
-
-                        </div>
+                        <textarea className="border-2 border-black h-40 bg-gray-200 rounded-lg p-2" value={dispInquiry} readOnly >
+                        </textarea>
                         <div className="flex flex-col text-gray-800 items-start mt-4">
                             <h4 className="text-xl text-gray-900 font-semibold">Inquiries</h4>
-                            <p className="text-sm">{getInqueries()}</p>
+                            <div className="flex flex-row" style={{ width: '100%' }} >
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={() => setInquiry(-1)}>previous</button>
+                                <div style={{ width: '20px' }}></div>
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={() => setInquiry(1)}>next</button>
+                                <div style={{ width: '20px' }}></div>
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={() => deleteInquiry()} >mark resolved</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+                        <div className="h-40 bg-gray-400 rounded-lg">
+                        </div>
+                        <div className="flex flex-col text-gray-800 items-start mt-4">
+                            <h4 className="text-xl text-gray-900 font-semibold">Newsletter Creator</h4>
                             <div className="flex flex-row" style={{ width: '100%' }} >
                                 <a className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" href="#">next</a>
                                 <div style={{ width: '20px' }}></div>
@@ -113,10 +214,9 @@ function Dashboard() {
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                     <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                        <div className="h-40 bg-gray-400 rounded-lg overflow-y-scroll">
-                            <p className="text-m">
-                                {adminList.map(email => <><li key={email}>{email}</li></>)}
-                            </p>
+                        <div className="h-40 bg-gray-200 rounded-lg overflow-y-scroll border-black border-2 p-2">
+
+                            {adminList.map(email => <li key={email}> {email} </li>)}
 
                         </div>
                         <div className="flex flex-col text-gray-800 items-start mt-4">
@@ -133,8 +233,28 @@ function Dashboard() {
 
                         </div>
                     </div>
-                </div>
 
+                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+                        <div className="h-40 bg-gray-200 rounded-lg overflow-y-scroll border-black border-2 p-2">
+
+                            {calendars.map(c => <li key={c}> {c} </li>)}
+
+                        </div>
+                        <div className="flex flex-col text-gray-800 items-start mt-4">
+                            <h4 className="text-xl text-gray-900 font-semibold">Calendar Links</h4>
+
+                            <textarea onChange={(e) => setInputLink(e.target.value)} placeholder="google calendar link" style={{ height: '24px' }}></textarea>
+                            <div className="flex flex-row" style={{ width: '100%' }} >
+                                <br />
+
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={addCalendar}>add</button>
+                                <div style={{ width: '20px' }}></div>
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={removeCalendar}>remove</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </>
@@ -146,30 +266,10 @@ function Dashboard() {
 
             <div className="flex flex-row" style={{ width: '100%' }} >
 
-                <div className="flex flex-col text-gray-700" style={{ width: '33%' }}>
+                <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                 </div>
 
-                <div className="flex flex-col text-gray-700" style={{ width: '33%' }}>
-
-                    <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
-                        <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                            <div className="flex flex-col text-gray-800 items-start mt-4">
-                                <h4 className="text-xl text-gray-900 font-semibold">Newsletter</h4>
-                                <p className="text-sm">{getInqueries()}</p>
-                                <div className="flex flex-row" style={{ width: '100%' }} >
-                                    {newsletterButton()}
-                                    <div style={{ width: '20px' }}></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <div className="flex flex-col text-gray-700" style={{ width: '33%' }}>
+                <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                     <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
                         <div className="text-gray-800 items-start place-content-center mt-4">
                             <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
