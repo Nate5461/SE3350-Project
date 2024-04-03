@@ -17,16 +17,25 @@ type inquiry = {
     name: string,
     timestamp: Timestamp
 }
+type waiver = {
+    id: string,
+    link: string
+}
 
 function Dashboard() {
     const [isAdmin, setIsAdmin] = useState(false);
     const [adminList, setAdminList] = useState([]);
     const [calendars, setcalendars] = useState([]);
+    const [waivers, setWaivers] = useState([] as waiver[]);
     const router = useRouter(); // initialize useRouter
     const [dispInquiry, setDispInquiry] = useState('');
 
     const [inputEmail, setInputEmail] = useState('');
     const [inputLink, setInputLink] = useState('');
+    const [formLink, setFormLink] = useState('');
+    const [formName, setFormName] = useState('');
+
+
 
     let [inquiryList, setInquiryList] = useState([])
     let [inquiryI, setInquiryI] = useState(0);
@@ -140,10 +149,59 @@ function Dashboard() {
         })
     }
 
+    let addForm = () => {
+        getDoc(doc(db, 'calendar', 'waivers')).then(c => {
+            if (c.exists()) {
+                let twaivers = []
+                let data = c.data();
+
+                data[formName] = formLink;
+
+                for (let key in data) {
+                    twaivers.push({ id: key, link: data[key] })
+                }
+
+                setWaivers(twaivers as waiver[])
+                setDoc(doc(db, 'calendar', 'waivers'), data);
+            }
+        })
+    }
+
+    let removeForm = () => {
+        getDoc(doc(db, 'calendar', 'waivers')).then(c => {
+            if (c.exists()) {
+                let twaivers = []
+                let data = c.data();
+
+                delete data[formName];
+
+                for (let key in data) {
+                    twaivers.push({ id: key, link: data[key] })
+                }
+
+                setWaivers(twaivers as waiver[])
+                setDoc(doc(db, 'calendar', 'waivers'), data);
+            }
+        })
+    }
+
+
     useEffect(() => {
         getDoc(doc(db, 'calendar', 'links')).then(c => {
             if (c.exists()) {
                 setcalendars(c.data().linksList as never[])
+            }
+        })
+
+        getDoc(doc(db, 'calendar', 'waivers')).then(c => {
+            if (c.exists()) {
+                let data = c.data();
+                let twaivers = []
+
+                for (let key in data) {
+                    twaivers.push({ id: key, link: data[key] })
+                }
+                setWaivers(twaivers as waiver[])
             }
         })
     }, [])
@@ -254,6 +312,30 @@ function Dashboard() {
 
                         </div>
                     </div>
+
+                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+                        <div className="h-40 bg-gray-200 rounded-lg overflow-y-scroll border-black border-2 p-2">
+
+                            {waivers.map(w => <li key={w.id}> {w.id}: <a href={w.link} target='_blank'>{w.link}</a> </li>)}
+
+                        </div>
+                        <div className="flex flex-col text-gray-800 items-start mt-4" style={{width: '100%'}}>
+                            <h4 className="text-xl text-gray-900 font-semibold">Event Waiver Links</h4>
+
+                            <textarea onChange={(e) => setFormName(e.target.value)} placeholder="Event Name" style={{ height: '24px' }}></textarea>
+                            <div style={{height: '5px'}}></div>
+                            <textarea onChange={(e) => setFormLink(e.target.value)} placeholder="Form Link" style={{ height: '24px', width: '80%' }}></textarea>
+                            <div className="flex flex-row" style={{ width: '100%' }} >
+                                <br />
+
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={addForm}>add</button>
+                                <div style={{ width: '20px' }}></div>
+                                <button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" onClick={removeForm}>remove</button>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -265,8 +347,20 @@ function Dashboard() {
             {adminPanel()}
 
             <div className="flex flex-row" style={{ width: '100%' }} >
-
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
+
+                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
+                        <div className="h-40 bg-gray-200 rounded-lg overflow-y-scroll border-black border-2 text-xl p-2">
+
+                            {waivers.map(w => <li key={w.id}> {w.id}: <a href={w.link} target='_blank'>{w.link}</a> </li>)}
+
+                        </div>
+                        <div className="flex flex-col text-gray-800 items-start mt-4">
+                            <h4 className="text-xl text-gray-900 font-semibold">Event Waivers</h4>
+
+                        </div>
+
+                    </div>
                 </div>
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
