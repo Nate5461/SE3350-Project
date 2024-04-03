@@ -144,26 +144,26 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="input">
-              <div className="title-7">Child's Name</div>
+              <div className="title-7">Participant's Name</div>
               <div className="textfield">
                 <input
                   type="text"
                   name="childName"
                   value={formData.childName}
                   onChange={handleChange}
-                  placeholder="Enter your child's name"
+                  placeholder="Enter your participant's name"
                 />
               </div>
             </div>
             <div className="input">
-              <div className="title-7">Child's Age</div>
+              <div className="title-7">Participant's Age</div>
               <div className="textfield">
                 <input
                   type="text"
                   name="childAge"
                   value={formData.childAge}
                   onChange={handleChange}
-                  placeholder="Enter your child's age"
+                  placeholder="Enter your participant's age"
                 />
               </div>
             </div>
