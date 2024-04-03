@@ -11,7 +11,7 @@ export default function InfoLayout({
     return (
         <>
 
-            <div className="section" style={{ overflow: 'hidden', width: '100%'}}>
+            <div className="section" style={{ overflow: 'hidden'}}>
                 <Image
                     className="blur contrast-50 object-cover"
                     src="/olli.png"

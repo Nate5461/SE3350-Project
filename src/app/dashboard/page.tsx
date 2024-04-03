@@ -255,26 +255,28 @@ function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
-                        <div className="h-40 bg-gray-400 rounded-lg">
-                        </div>
-                        <div className="flex flex-col text-gray-800 items-start mt-4">
-                            <h4 className="text-xl text-gray-900 font-semibold">Newsletter Creator</h4>
-                            <div className="flex flex-row" style={{ width: '100%' }} >
-                                <a className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" href="#">next</a>
-                                <div style={{ width: '20px' }}></div>
-                                <a className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase" href="#">mark resolved</a>
+                    <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
+                        <div className="text-gray-800 items-start place-content-center mt-4">
+                            <h4 className="text-xl text-gray-900 font-semibold">Clock In / Clock Out</h4>
+                            <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
+                                <Link className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" href='dashboard/clockIn'>
+                                    Clock In
+                                </Link>
                             </div>
-
                         </div>
                     </div>
 
                     <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
                         <div className="text-gray-800 items-start place-content-center mt-4">
+                            <h4 className="text-xl text-gray-900 font-semibold">Send New Newsletter</h4>
                             <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
-                                <Link className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" href='dashboard/clockIn'>
-                                    Clock In
-                                </Link>
+                                <button className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" >
+                                    Upload Newsletter
+                                </button>
+                                <div style={{height: '6px'}}></div>
+                                <button className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" >
+                                    Send
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -329,11 +331,11 @@ function Dashboard() {
                             {waivers.map(w => <li key={w.id}> {w.id}: <a href={w.link} target='_blank'>{w.link}</a> </li>)}
 
                         </div>
-                        <div className="flex flex-col text-gray-800 items-start mt-4" style={{width: '100%'}}>
+                        <div className="flex flex-col text-gray-800 items-start mt-4" style={{ width: '100%' }}>
                             <h4 className="text-xl text-gray-900 font-semibold">Event Waiver Links</h4>
 
                             <textarea onChange={(e) => setFormName(e.target.value)} placeholder="Event Name" style={{ height: '24px' }}></textarea>
-                            <div style={{height: '5px'}}></div>
+                            <div style={{ height: '5px' }}></div>
                             <textarea onChange={(e) => setFormLink(e.target.value)} placeholder="Form Link" style={{ height: '24px', width: '80%' }}></textarea>
                             <div className="flex flex-row" style={{ width: '100%' }} >
                                 <br />
@@ -362,7 +364,7 @@ function Dashboard() {
                     <div className="flex flex-col bg-gray-200 rounded-lg p-4 m-2">
                         <div className="h-40 bg-gray-200 rounded-lg overflow-y-scroll border-black border-2 text-xl p-2">
 
-                            {waivers.map(w => <li key={w.id}> {w.id}: <a href={w.link} target='_blank'>{w.link}</a> </li>)}
+                            {waivers.map(w => <li key={w.id}> {w.id}: <a href={w.link} target='_blank'><button className="p-2 leading-none rounded font-medium mt-3 bg-gray-400 text-xs uppercase"> Waiver</button></a> </li>)}
 
                         </div>
                         <div className="flex flex-col text-gray-800 items-start mt-4">
@@ -375,6 +377,7 @@ function Dashboard() {
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                     <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
+                            <h4 className="text-xl text-gray-900 font-semibold">Logout</h4>
                         <div className="text-gray-800 items-start place-content-center mt-4">
                             <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
                                 <Link className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" href='login/logout'>
