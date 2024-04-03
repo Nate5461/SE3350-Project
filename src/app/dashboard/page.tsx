@@ -268,6 +268,16 @@ function Dashboard() {
 
                         </div>
                     </div>
+
+                    <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
+                        <div className="text-gray-800 items-start place-content-center mt-4">
+                            <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
+                                <Link className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" href='dashboard/clockIn'>
+                                    Clock In
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
