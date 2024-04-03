@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { DOMAttributes, DOMElement, DetailedHTMLProps, FormHTMLAttributes, useState } from "react";
 import firebase_app from "../../firebase";
 import { getFirestore, addDoc, collection, serverTimestamp } from "firebase/firestore";
 
@@ -10,7 +10,7 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, "inquiries"), {

@@ -70,7 +70,78 @@ export default function ServicesPage() {
           attend meetings.
         </p>
       </div>
+<<<<<<< HEAD
       
+=======
+      <div className="section-2">
+        <div className="container">
+          <div className="title-2">Newsletter Signup Registration</div>
+          <form onSubmit={handleSubmit}>
+            <div className="input">
+              <div className="title-7">Recipient Name</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="recipientName"
+                  value={formData.recipientName}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                />
+              </div>
+            </div>
+            <div className="input">
+              <div className="title-7">Email Address</div>
+              <div className="textfield">
+                <input
+                  type="email"
+                  name="emailAddress"
+                  value={formData.emailAddress}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                />
+              </div>
+            </div>
+            <div className="input">
+              <div className="title-7">Participant's Name</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="childName"
+                  value={formData.childName}
+                  onChange={handleChange}
+                  placeholder="Enter your participant's name"
+                />
+              </div>
+            </div>
+            <div className="input">
+              <div className="title-7">Participant's Age</div>
+              <div className="textfield">
+                <input
+                  type="text"
+                  name="childAge"
+                  value={formData.childAge}
+                  onChange={handleChange}
+                  placeholder="Enter your participant's age"
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="blueButton">
+              <div className="primary">
+                <div className="div">Register</div>
+              </div>
+            </button>
+          </form>
+        </div>
+        <Image
+          className="vector-3"
+          alt="Vector"
+          src="https://cdn.animaapp.com/projects/65baa7f6c4b445bdbec0f000/releases/65baa8124ae9e26d265a295b/img/vector-200.svg"
+          width={200}
+          height={200}
+        />
+      </div>
+>>>>>>> bf9cba6bc66ff782471b01aca5843f3dfddad34b
     </>
   );
 };

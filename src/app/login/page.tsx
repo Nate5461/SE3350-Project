@@ -15,7 +15,7 @@ function LoginForm() {
 
   const router = useRouter(); // initialize useRouter
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: any) => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

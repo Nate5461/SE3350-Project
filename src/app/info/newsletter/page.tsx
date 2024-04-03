@@ -76,7 +76,7 @@ export default function Newsletter() {
                         </div>
                     </div>
                     <div className="input">
-                        <div className="text-white">Participant's Name</div>
+                        <div className="text-white">Participant&apos;s Name</div>
                         <div className="textfield">
                             <input
                                 type="text"
@@ -88,7 +88,7 @@ export default function Newsletter() {
                         </div>
                     </div>
                     <div className="input">
-                        <div className="text-white">Participant's Age</div>
+                        <div className="text-white">Participant&apos;s Age</div>
                         <div className="textfield">
                             <input
                                 type="text"
