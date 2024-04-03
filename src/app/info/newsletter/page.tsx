@@ -115,5 +115,15 @@ export default function Newsletter() {
                 height={200}
             />
         </div>
+        {/* Display PDF at the bottom */}
+        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                <iframe
+                    src="src\app\info\newsletter\OLLI+Newsletter+Feb+24.pdf#toolbar=0"
+                    width="800"
+                    height="600"
+                    style={{ border: 'none' }}
+                    title="PDF Viewer"
+                />
+            </div>
     </>
 }
