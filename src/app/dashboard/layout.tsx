@@ -21,7 +21,7 @@ function DashboardLayout({
     async function checkPerms(user: User | null) {
         if (user === null) {
             console.log("not logged in")
-            window.location.href='/login'
+            if(window!==undefined) window.location.href='/login'
             return;
         }
         setLogggedIn(true);
