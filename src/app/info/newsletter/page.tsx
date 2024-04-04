@@ -4,9 +4,11 @@ import Image from 'next/image';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import firebase_app from '@/app/firebase';
 import { getAuth } from 'firebase/auth';
+import { pdfjs, Document, Page } from 'react-pdf';
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-const auth = getAuth(firebase_app);
-let user = auth.currentUser;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 export default function Newsletter() {
     const [formData, setFormData] = useState({
@@ -33,7 +35,7 @@ export default function Newsletter() {
             getDoc(doc(db, 'NewsletterSignup', formData.emailAddress)).then(signup => {
                 if (!signup.exists()) {
                     console.log(signup.exists())
-                    if (formData.emailAddress!= null) {
+                    if (formData.emailAddress != null) {
                         setDoc(doc(db, 'NewsletterSignup', formData.emailAddress),
                             formData
                         );
@@ -47,6 +49,12 @@ export default function Newsletter() {
     };
 
     return <>
+
+        <div className="h-screen" style={{ width: '100%' }}>
+
+            <iframe src='https://storage.googleapis.com/cheerproject-01015/newsletter.pdf' style={{ width: '100%', height: '100%' }}></iframe>
+
+        </div>
         <div className="section-2">
             <div className="container">
                 <div className="title-2">Newsletter Signup Registration</div>
@@ -115,15 +123,5 @@ export default function Newsletter() {
                 height={200}
             />
         </div>
-        {/* Display PDF at the bottom */}
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <iframe
-                    src="src\app\info\newsletter\OLLI+Newsletter+Feb+24.pdf#toolbar=0"
-                    width="800"
-                    height="600"
-                    style={{ border: 'none' }}
-                    title="PDF Viewer"
-                />
-            </div>
     </>
 }

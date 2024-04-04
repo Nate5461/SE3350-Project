@@ -16,12 +16,11 @@ function Logout() {
     const router = useRouter();
     async function checkPerms(user: User | null) {
         if (user === null) {
-            console.log("not logged in")
             router.push('/')
             return;
         }
         signOut(auth)
-        router.push('/');
+        router.replace('/');
     }
 
     onAuthStateChanged(auth, user => {

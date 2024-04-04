@@ -1,14 +1,13 @@
 "use client"
 import { useState } from 'react';
 import firebase_app from "../firebase";
-import { signInWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const auth = getAuth(firebase_app);
 
 function LoginForm() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErr] = useState('');

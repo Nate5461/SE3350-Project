@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import firebase_app from '../firebase';
 import Link from 'next/link';
 import { Timestamp, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
-import { ref, remove, set } from 'firebase/database';
 
 const db = getFirestore(firebase_app);
 const auth = getAuth(firebase_app);
@@ -35,7 +34,7 @@ function Dashboard() {
     const [formLink, setFormLink] = useState('');
     const [formName, setFormName] = useState('');
 
-
+    const [file, setFile] = useState<File | null>(null);
 
     let [inquiryList, setInquiryList] = useState([])
     let [inquiryI, setInquiryI] = useState(0);
@@ -206,6 +205,32 @@ function Dashboard() {
         })
     }, [])
 
+    let uploadNewsletter = (e: any) => {
+        console.log(e.target.files[0])
+        setFile(e.target.files[0])
+    }
+
+    let sendNewsletter = () => {
+
+        if (file == null) return;
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                "Host": "storage.googleapis.com",
+                "Content-Type": "application/pdf",
+                "Content-Length": file.size.toString(),
+                "Date": new Date().toUTCString()
+            },
+            body: file
+        };
+        fetch("api/newsletter.pdf", requestOptions).catch(err => {
+            console.log(err)
+        }).then(res => {
+            console.log(res)
+        });
+
+    }
+
     onAuthStateChanged(auth, thisuser => {
         if (thisuser == null) {
             // if not logged in
@@ -270,11 +295,9 @@ function Dashboard() {
                         <div className="text-gray-800 items-start place-content-center mt-4">
                             <h4 className="text-xl text-gray-900 font-semibold">Send New Newsletter</h4>
                             <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
-                                <button className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" >
-                                    Upload Newsletter
-                                </button>
-                                <div style={{height: '6px'}}></div>
-                                <button className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" >
+                                <input className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" type="file" onInput={uploadNewsletter} />
+                                <div style={{ height: '6px' }}></div>
+                                <button className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" onClick={sendNewsletter}>
                                     Send
                                 </button>
                             </div>
@@ -377,7 +400,7 @@ function Dashboard() {
 
                 <div className="flex flex-col text-gray-700" style={{ width: '50%' }}>
                     <div className="flex flex-col bg-gray-200 place-content-center rounded-lg p-4 m-2 text-gray-700">
-                            <h4 className="text-xl text-gray-900 font-semibold">Logout</h4>
+                        <h4 className="text-xl text-gray-900 font-semibold">Logout</h4>
                         <div className="text-gray-800 items-start place-content-center mt-4">
                             <div className="bg-gray-200 rounded-lg p-4 place-content-center m-2">
                                 <Link className="p-3 rounded font-large mt-3 bg-gray-400 text-m uppercase place-content-center" href='login/logout'>

@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+import { revalidatePath } from "next/cache";
 
 const app = firebase_app;
 const auth = getAuth();
 let currentUser;
+
+
 function DashboardLayout({
     children,
 }: Readonly<{
@@ -18,10 +19,10 @@ function DashboardLayout({
 }>) {
     const [loggedIn, setLogggedIn] = useState(false);
     const router = useRouter();
+
     async function checkPerms(user: User | null) {
         if (user === null) {
-            console.log("not logged in")
-            if(window!==undefined) window.location.href='/login'
+            if(typeof window !== undefined) window.location.href = '/login'
             return;
         }
         setLogggedIn(true);
@@ -36,7 +37,7 @@ function DashboardLayout({
     })
 
     let loggedInChildren = () => {
-        if(loggedIn) {
+        if (loggedIn) {
             return children;
         }
         else return <></>;
@@ -44,7 +45,7 @@ function DashboardLayout({
 
     return (
         <>
-            <div style={{width: '100%'}}>
+            <div style={{ width: '100%' }}>
 
                 {loggedInChildren()}
 
