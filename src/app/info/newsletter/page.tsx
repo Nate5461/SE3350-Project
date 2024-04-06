@@ -4,11 +4,6 @@ import Image from 'next/image';
 import { doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import firebase_app from '@/app/firebase';
 import { getAuth } from 'firebase/auth';
-import { pdfjs, Document, Page } from 'react-pdf';
-import 'react-pdf/dist/Page/TextLayer.css';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 export default function Newsletter() {
     const [formData, setFormData] = useState({
@@ -57,7 +52,7 @@ export default function Newsletter() {
         </div>
         <div className="section-2">
             <div className="container">
-                <div className="title-2">Newsletter Signup Registration</div>
+                <div className="title-2">Newsletter Signup</div>
                 <form onSubmit={handleSubmit}>
                     <div className="input">
                         <div className="text-white ">Recipient Name</div>
@@ -80,30 +75,6 @@ export default function Newsletter() {
                                 value={formData.emailAddress}
                                 onChange={handleChange}
                                 placeholder="Enter your email"
-                            />
-                        </div>
-                    </div>
-                    <div className="input">
-                        <div className="text-white">Participant&apos;s Name</div>
-                        <div className="textfield">
-                            <input
-                                type="text"
-                                name="childName"
-                                value={formData.childName}
-                                onChange={handleChange}
-                                placeholder="Enter your child's name"
-                            />
-                        </div>
-                    </div>
-                    <div className="input">
-                        <div className="text-white">Participant&apos;s Age</div>
-                        <div className="textfield">
-                            <input
-                                type="text"
-                                name="childAge"
-                                value={formData.childAge}
-                                onChange={handleChange}
-                                placeholder="Enter your child's age"
                             />
                         </div>
                     </div>

@@ -140,7 +140,7 @@ function Dashboard() {
             if (c.exists()) {
                 let list = c.data().linksList;
                 list.splice(list.indexOf(inputLink), 1)
-                setDoc(doc(db, 'users', 'admins'), {
+                setDoc(doc(db, 'calendar', 'links'), {
                     linksList: list,
                 });
                 setcalendars(list);
